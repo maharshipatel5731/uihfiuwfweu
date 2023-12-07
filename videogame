@@ -1,0 +1,66 @@
+import java.util.*;
+
+class Main {
+  public static void main(String[] args) {
+
+    Scanner keyedInput = new Scanner(System.in);
+
+    String space = ("\n \n");
+    String username;
+    String directionDecisionMessage = "Please enter the direction you would like to go (Forward or right?) Please type the letter (f for forward, r for right) of your chosen direction.";
+
+    String direction;
+
+    String deadEnd = "GAME OVER: Oops! You have arrived at a dead end! Please try running the program from the beginning, ";
+
+    String errorMessage = "GAME OVER: Please re-run the program, but enter a valid direction when prompted, ";
+
+    String [] congratsMessageArchive = new String[] {"good job, ", "nice job, ", "congrats, ", "congratulations, ", "you won, "}; 
+
+    Random rand = new Random();
+    int rand_int = rand.nextInt(4);
+    String congratsMessage = congratsMessageArchive [rand_int].toUpperCase();
+
+    String youWon = ("You see a door to the distance. Relieved, you run toward it. Although it seems to be very far away, you reach it after what seemed to be a painful eternity of running (actually it was only 30 seconds, but seems more due to the backpack on your back). Beaming from ear to ear, you open the door and it works! You venture outside and take a few gulps of the fresh air, enjoying yourself in the perfect weather, and marvelling at the fact that you made it out of the school! " + congratsMessage.toUpperCase());
+
+    System.out.println(space + "Please enter your name." + space);
+    username = keyedInput.nextLine();
+
+    deadEnd = deadEnd + username;
+    errorMessage = errorMessage + username;
+    youWon = youWon + username.toUpperCase() + "!";
+
+    System.out.println(space + "Hello, " + username + "!" + space + "Welcome to Untitled Text Game One!" + space);
+
+    System.out.println("Hello! You are captured in a very miniature school and you must come out!" + space + "You came in through a door, but it locks behind you. Therefore you cannot exit." + space + "You look around. You see that you are at the corner of a hallway and can either go forward or to the right. Which way do you want to go?" + space + directionDecisionMessage + space);
+    direction = keyedInput.nextLine();
+
+    if (direction == "r" || direction == "R" || direction == "f" || direction == "F") {
+      if (direction == "r" || direction == "R") {
+        direction = "right";
+        System.out.print(space + "You go " + direction + ".\n" + "The lights of the hallway behind you eerily turn off. This means you can't go backward. I mean, you can, but with the lights turning off behind you, would you really want to?\n" + "You shake your mind off the creepiness of the situation and look forward;\n" + "You can either go forward or right." + space + directionDecisionMessage + space);
+        direction = keyedInput.nextLine();
+        if (direction == "r" || direction == "R") {
+          System.out.print(space + deadEnd);
+        } else if (direction == "f" || direction == "F") {
+        System.out.println(space + youWon);
+        } else {
+        System.out.println(space + errorMessage);
+        }
+      } else if (direction == "f" || direction == "F") {
+        direction = "forward";
+        System.out.print(space + "You go " + direction + ".\n" + "The lights of the hallway behind you eerily turn off. This means you can't go backward. I mean, you can, but with the lights turning off behind you, would you really want to?\n" + "You shake your mind off the creepiness of the situation and look forward;\n" + "You can either go forward or right." + space + directionDecisionMessage + space);
+          direction = keyedInput.nextLine();
+          if (direction == "r" || direction == "R") {
+            System.out.print(space + youWon);
+          } else if (direction == "f" || direction == "F") {
+            System.out.println(space + deadEnd);
+          } else {
+            System.out.println(space + errorMessage);
+          }
+      }
+    } else {
+      System.out.println(space + errorMessage);
+    }
+  } 
+}
